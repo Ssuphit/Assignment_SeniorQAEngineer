@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.9.6 on darwin)" generated="2025-08-08T13:03:04.644678" rpa="false" schemaversion="5">
+<suite id="s1" name="Test-Automation" source="/Users/ssphitt/Desktop/Test-Automation">
+<suite id="s1-s1" name="Api Test" source="/Users/ssphitt/Desktop/Test-Automation/api_test.robot">
+<test id="s1-s1-t1" name="Test Cases 002" line="11">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-08-08T13:03:04.830384" level="INFO">&amp;{user_data} = { id=20250808001 | username=Suphittt | firstName=Suphitcha | lastName=Thanakhamma | email=ssufortest@gmail.com | password=testerssu123 | phone=0612345678 | userStatus=1 }</msg>
+<var>&amp;{user_data}</var>
+<arg>id=${USER_ID}</arg>
+<arg>username=${USERNAME}</arg>
+<arg>firstName=Suphitcha</arg>
+<arg>lastName=Thanakhamma</arg>
+<arg>email=ssufortest@gmail.com</arg>
+<arg>password=testerssu123</arg>
+<arg>phone=0612345678</arg>
+<arg>userStatus=1</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-08-08T13:03:04.830028" elapsed="0.000382"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-08-08T13:03:04.830646" level="INFO">&amp;{request_headers} = { Content-Type=application/json }</msg>
+<var>&amp;{request_headers}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-08-08T13:03:04.830528" elapsed="0.000135"/>
+</kw>
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-08-08T13:03:04.830838" level="INFO">Creating Session using : alias=petstore_session, url=https://petstore.swagger.io/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>petstore_session</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-08-08T13:03:04.830742" elapsed="0.000207"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-08-08T13:03:05.994098" level="INFO">POST Request : url=https://petstore.swagger.io/v2/user 
+ path_url=/v2/user 
+ headers={'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '201'} 
+ body=b'{"id": "20250808001", "username": "Suphittt", "firstName": "Suphitcha", "lastName": "Thanakhamma", "email": "ssufortest@gmail.com", "password": "testerssu123", "phone": "0612345678", "userStatus": "1"}' 
+ </msg>
+<msg time="2025-08-08T13:03:05.994301" level="INFO">POST Response : url=https://petstore.swagger.io/v2/user 
+ status=200, reason=OK 
+ headers={'Date': 'Fri, 08 Aug 2025 06:03:05 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Server': 'Jetty(9.2.9.v20150224)'} 
+ body={"code":200,"type":"unknown","message":"20250808001"} 
+ </msg>
+<msg time="2025-08-08T13:03:05.994410" level="INFO">/Users/ssphitt/Desktop/Test-Automation/venv/lib/python3.9/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'petstore.swagger.io'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-08-08T13:03:05.994658" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>alias=petstore_session</arg>
+<arg>url=/user</arg>
+<arg>json=${user_data}</arg>
+<arg>headers=&amp;{request_headers}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-08-08T13:03:04.831027" elapsed="1.163679"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2025-08-08T13:03:05.996213" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-08-08T13:03:05.995068" elapsed="0.001265"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-08-08T13:03:05.997491" level="INFO">${response_body} = {'code': 200, 'type': 'unknown', 'message': '20250808001'}</msg>
+<var>${response_body}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-08-08T13:03:05.996634" elapsed="0.000966"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-08-08T13:03:05.998214" level="INFO">${message} = 20250808001</msg>
+<var>${message}</var>
+<arg>${response_body}</arg>
+<arg>message</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-08-08T13:03:05.997885" elapsed="0.000371"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${message}</arg>
+<arg>${USER_ID}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-08-08T13:03:05.998468" elapsed="0.000314"/>
+</kw>
+<doc>ทดสอบการสร้าง user ใหม่และตรวจสอบ response</doc>
+<tag>API</tag>
+<status status="PASS" start="2025-08-08T13:03:04.829159" elapsed="1.169882"/>
+</test>
+<status status="PASS" start="2025-08-08T13:03:04.659645" elapsed="1.340178"/>
+</suite>
+<suite id="s1-s2" name="Web Ui Test" source="/Users/ssphitt/Desktop/Test-Automation/web_ui_test.robot">
+<test id="s1-s2-t1" name="Test Cases 001" line="13">
+<kw name="เปิดหน้าเว็บ SauceDemo">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-08-08T13:03:06.122624" level="INFO">Opening browser 'Chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-08-08T13:03:06.122408" elapsed="4.006350"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.131952" elapsed="0.336218"/>
+</kw>
+<doc>ขั้นตอนที่ 1: เข้าหน้าแรกของที่ https://www.saucedemo.com/</doc>
+<status status="PASS" start="2025-08-08T13:03:06.122039" elapsed="4.346311"/>
+</kw>
+<kw name="ใส่ชื่อผู้ใช้งาน">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>id:user-name</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.470620" elapsed="0.022026"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-08-08T13:03:10.493099" level="INFO">Typing text 'standard_user' into text field 'id:user-name'.</msg>
+<arg>id:user-name</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.492829" elapsed="0.165360"/>
+</kw>
+<doc>ขั้นตอนที่ 2: ใส่ Username: standard_user</doc>
+<status status="PASS" start="2025-08-08T13:03:10.470195" elapsed="0.188127"/>
+</kw>
+<kw name="ใส่รหัสผ่าน">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-08-08T13:03:10.659261" level="INFO">Typing text 'secret_sauce' into text field 'id:password'.</msg>
+<arg>id:password</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.659045" elapsed="0.069591"/>
+</kw>
+<doc>ขั้นตอนที่ 3: ใส่ Password: secret_sauce</doc>
+<status status="PASS" start="2025-08-08T13:03:10.658779" elapsed="0.070000"/>
+</kw>
+<kw name="กดปุ่ม Login">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-08-08T13:03:10.729398" level="INFO">Clicking button 'id:login-button'.</msg>
+<arg>id:login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.729170" elapsed="0.073896"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>id:inventory_container</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.803268" elapsed="0.005308"/>
+</kw>
+<doc>ขั้นตอนที่ 4: กดปุ่ม Login เข้าสู่ระบบ</doc>
+<status status="PASS" start="2025-08-08T13:03:10.728959" elapsed="0.079723"/>
+</kw>
+<kw name="ตรวจสอบชื่อสินค้าที่หน้าหลัก">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-08-08T13:03:10.827489" level="INFO">${name_on_page} = Sauce Labs Backpack</msg>
+<var>${name_on_page}</var>
+<arg>xpath=//div[text()='${PRODUCT_NAME}']</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.809172" elapsed="0.018355"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${name_on_page}</arg>
+<arg>${PRODUCT_NAME}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.827694" elapsed="0.000231"/>
+</kw>
+<doc>ขั้นตอนที่ 5: ตรวจสอบชื่อสินค้า Sauce Labs Backpack</doc>
+<status status="PASS" start="2025-08-08T13:03:10.808950" elapsed="0.019034"/>
+</kw>
+<kw name="ตรวจสอบราคาสินค้าที่หน้าหลัก">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-08-08T13:03:10.839950" level="INFO">${price_on_page} = $29.99</msg>
+<var>${price_on_page}</var>
+<arg>xpath=//div[text()='${PRODUCT_NAME}']/ancestor::div[@class='inventory_item_description']//div[@class='inventory_item_price']</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.828304" elapsed="0.011734"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${price_on_page}</arg>
+<arg>${PRODUCT_PRICE}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.840189" elapsed="0.000191"/>
+</kw>
+<doc>ขั้นตอนที่ 6: ตรวจสอบราคาสินค้า Sauce Labs Backpack</doc>
+<status status="PASS" start="2025-08-08T13:03:10.828130" elapsed="0.012308"/>
+</kw>
+<kw name="กดปุ่ม Add to cart">
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-08-08T13:03:10.840956" level="INFO">Clicking button 'id:add-to-cart-sauce-labs-backpack'.</msg>
+<arg>id:add-to-cart-sauce-labs-backpack</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.840754" elapsed="0.033082"/>
+</kw>
+<doc>ขั้นตอนที่ 7: กดปุ่ม Add to cart</doc>
+<status status="PASS" start="2025-08-08T13:03:10.840584" elapsed="0.033352"/>
+</kw>
+<kw name="ตรวจสอบว่าปุ่มเปลี่ยนเป็น Remove">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-08-08T13:03:10.882858" level="INFO">Element 'id:remove-sauce-labs-backpack' contains text 'Remove'.</msg>
+<arg>id:remove-sauce-labs-backpack</arg>
+<arg>Remove</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.874356" elapsed="0.008587"/>
+</kw>
+<doc>ขั้นตอนที่ 8: ตรวจสอบการเพิ่มสินค้าเข้าตระกร้าสินค้าสำเร็จ</doc>
+<status status="PASS" start="2025-08-08T13:03:10.874137" elapsed="0.008886"/>
+</kw>
+<kw name="กดปุ่ม ตะกร้าสินค้า">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-08-08T13:03:10.883507" level="INFO">Clicking element 'class:shopping_cart_link'.</msg>
+<arg>class:shopping_cart_link</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.883388" elapsed="0.028907"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>class:cart_item</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.912442" elapsed="0.005293"/>
+</kw>
+<doc>ขั้นตอนที่ 9: กดปุ่ม Cart เข้าไปที่ตระกร้าสินค้า</doc>
+<status status="PASS" start="2025-08-08T13:03:10.883195" elapsed="0.034634"/>
+</kw>
+<kw name="ตรวจสอบชื่อสินค้าในหน้าตะกร้า">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-08-08T13:03:10.926500" level="INFO">${name_in_cart} = Sauce Labs Backpack</msg>
+<var>${name_in_cart}</var>
+<arg>class:inventory_item_name</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.918299" elapsed="0.008236"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${name_in_cart}</arg>
+<arg>${PRODUCT_NAME}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.926658" elapsed="0.000178"/>
+</kw>
+<doc>ขั้นตอนที่ 10: ตรวจสอบชื่อสินค้า ที่ หน้าตระกร้าสินค้า</doc>
+<status status="PASS" start="2025-08-08T13:03:10.918083" elapsed="0.008812"/>
+</kw>
+<kw name="ตรวจสอบราคาสินค้าในหน้าตะกร้า">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-08-08T13:03:10.935792" level="INFO">${price_in_cart} = $29.99</msg>
+<var>${price_in_cart}</var>
+<arg>class:inventory_item_price</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.927236" elapsed="0.008595"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${price_in_cart}</arg>
+<arg>${PRODUCT_PRICE}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.935960" elapsed="0.000182"/>
+</kw>
+<doc>ขั้นตอนที่ 11: ตรวจสอบราคาสินค้า ที่ หน้าตระกร้าสินค้า</doc>
+<status status="PASS" start="2025-08-08T13:03:10.927054" elapsed="0.009146"/>
+</kw>
+<kw name="ตรวจสอบจำนวนสินค้าในหน้าตะกร้า">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-08-08T13:03:10.946226" level="INFO">${quantity_in_cart} = 1</msg>
+<var>${quantity_in_cart}</var>
+<arg>class:cart_quantity</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.936506" elapsed="0.009761"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${quantity_in_cart}</arg>
+<arg>1</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.946403" elapsed="0.000176"/>
+</kw>
+<doc>ขั้นตอนที่ 12: ตรวจสอบจำนวนสินค้า ที่ หน้าตระกร้าสินค้า</doc>
+<status status="PASS" start="2025-08-08T13:03:10.936343" elapsed="0.010297"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-08-08T13:03:10.946855" elapsed="0.084579"/>
+</kw>
+<doc>ทดสอบการล็อกอิน, เพิ่มสินค้าลงตะกร้า, และตรวจสอบความถูกต้องของสินค้าในตะกร้า</doc>
+<tag>Web UI</tag>
+<status status="PASS" start="2025-08-08T13:03:06.120952" elapsed="4.910657"/>
+</test>
+<status status="PASS" start="2025-08-08T13:03:06.000726" elapsed="5.031459"/>
+</suite>
+<status status="PASS" start="2025-08-08T13:03:04.645626" elapsed="6.387185"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">API</stat>
+<stat pass="1" fail="0" skip="0">Web UI</stat>
+</tag>
+<suite>
+<stat name="Test-Automation" id="s1" pass="2" fail="0" skip="0">Test-Automation</stat>
+<stat name="Api Test" id="s1-s1" pass="1" fail="0" skip="0">Test-Automation.Api Test</stat>
+<stat name="Web Ui Test" id="s1-s2" pass="1" fail="0" skip="0">Test-Automation.Web Ui Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
