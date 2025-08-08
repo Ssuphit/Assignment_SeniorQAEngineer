@@ -45,6 +45,9 @@
    robot web_ui_test.robot
    ```
 3. รายงานผลการทดสอบ
+   ![Log_Web_UI_1](./images/webui_1.png)
+   ![Log_Web_UI_2](./images/webui_2.png)
+   ![Log_Web_UI_3](./images/webui_3.png)
 
 # Assignment 2.2: API Automation
 
@@ -54,3 +57,5 @@
    robot api_test.robot
    ```
 3. รายงานผลการทดสอบ
+   ![Log_API_1](./images/api_1.png)
+   ![Log_API_2](./images/api_2.png)
